@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrine's Colorful Language Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MASTER LANGUAGES THROUGH DYNAMIC LEARNING WITH CORRINE</h1>
+            <p>Explore cutting-edge, interactive strategies designed to unlock your full linguistic potential</p>
+            <button class="cta-button" style="margin-top: 4rem;" onclick="scrollToCalendar()">Start Your Lessons</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <!-- Feature Cards Content -->
+    </section>
+
+    <section class="game-section" id="game-section">
+        <h2>Test Your Language Skills</h2>
+        <div class="game-container">
+            <div class="language-buttons">
+                <button class="language-button active" id="english-button">English</button>
+                <button class="language-button" id="italian-button">Italiano</button>
+                <button class="language-button" id="spanish-button">Español</button>
+            </div>
+            <div id="game-question"></div>
+            <div id="game-options"></div>
+            <div id="game-result"></div>
+        </div>
+    </section>
+
+    <section class="calendar-section" id="calendar-section">
+        <h2>Book Your Language Adventure</h2>
+        <button class="cta-button" style="margin-bottom: 1rem;" onclick="window.open('https://calendly.com/atlascorrine', '_blank')">Open Calendly</button>
+        <iframe src="https://calendly.com/atlascorrine" class="calendar-frame" style="margin-top: 3rem;"></iframe>
+    </section>
+
+    <footer>
+        <p>✉️ Reach me at: <a href="mailto:atlascorrine@gmail.com">atlascorrine@gmail.com</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
