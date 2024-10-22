@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corrine's Colorful Language Adventure</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4, #45B7D1);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            z-index: 1;
+        }
+
+        .floating-object {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .cta-button {
+            background: #FFD93D;
+            color: #333;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .feature-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+            width: calc(33% - 2rem);
+            min-width: 250px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-top: 0;
+        }
+
+        .feature-card ul {
+            text-align: left;
+            padding-left: 1.5rem;
+        }
+
+        .game-section {
+            background: linear-gradient(135deg, #17EAD9, #6078EA);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .game-container {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .language-button {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .language-button:hover, .language-button.active {
+            background: #FFD93D;
+            transform: scale(1.05);
+        }
+
+        .game-option {
+            background: white;
+            color: #333;
+            border: none;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .game-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #game-result {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        .calendar-section {
+            padding: 4rem 2rem;
+            background: #f9f9f9;
+            text-align: center;
+        }
+
+        .calendar-frame {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MASTER LANGUAGES THROUGH DYNAMIC LEARNING WITH CORRINE</h1>
+            <p>Explore cutting-edge, interactive strategies designed to unlock your full linguistic potential</p>
+            <button class="cta-button" style="margin-top: 4rem;" onclick="scrollToCalendar()">Start Your Lessons</button>
+        </div>
+    </section>
+    <section class="hero">
+        <div class="hero-content">
+            <h2 style="font-size: 3.5rem; font-weight: 700; color: #b67d0b;">ABOUT ME</h2>
+            <h1 style="font-size: 2.5rem; font-weight: 700; color: #ef3dff;">LEARN ENGLISH, SPANISH & ITALIAN WITH CORRINE</h1>
+            <p style="font-size: 2rem; font-weight: 600; color: #2626d7; margin-top: 1rem;">Dynamic, personalized lessons that get results fast! 🌍</p>
+            <p style="font-size: 1.8rem; font-weight: 400; color: #333; max-width: 800px; margin: 2rem auto;">
+                Born and raised in sunny California ☀️, I have spoken multiple languages professionally for years, including English, Spanish, Italian, German, and Arabic. Over time, I developed a personalized teaching method that adapts to your needs, delivering fast and evident results from the very first lesson. Whether you're learning for work, travel, or fun, you'll see immediate progress! 🚀
+            </p>
+            <p style="font-size: 1.8rem; font-weight: 500; color: #ffffff;">Experience real results, starting from day one!</p>
+        
+    </section>
+    
+
+    
+
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">🗓️</div>
+            <h3>Flexible Learning</h3>
+            <p>Lessons that fit your schedule. Learn at your own pace, on your own time.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>Tailored Experience</h3>
+            <p>One-on-one sessions focused on your specific language goals and interests.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Measurable Progress</h3>
+            <p>Track your improvement with regular assessments and personalized feedback.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌈</div>
+            <h3>Virtual Language Immersion</h3>
+            <p>Experience language learning like never before with our innovative virtual reality approach:</p>
+            <ul>
+                <li>Interactive VR scenarios for real-life language practice</li>
+                <li>AI-powered conversation partners</li>
+                <li>Real-time pronunciation and grammar feedback</li>
+                <li>Dynamic content adaptation based on your progress</li>
+            </ul>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🧠</div>
+            <h3>Personalized Learning Path</h3>
+            <p>Your journey to fluency is unique. We create a customized curriculum that:</p>
+            <ul>
+                <li>Adapts to your learning style and pace</li>
+                <li>Focuses on your areas of interest</li>
+                <li>Builds on your strengths and improves your weaknesses</li>
+                <li>Evolves as you progress</li>
+            </ul>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌍</div>
+            <h3>Cultural Integration</h3>
+            <p>Language is more than words. Immerse yourself in the culture:</p>
+            <ul>
+                <li>Virtual cultural tours and experiences</li>
+                <li>Language exchange with native speakers</li>
+                <li>Curated media recommendations (films, books, music)</li>
+                <li>Cultural context for idiomatic expressions</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="game-section" id="game-section">
+        <h2>Test Your Language Skills</h2>
+        <div class="game-container">
+            <div class="language-buttons">
+                <button class="language-button active" id="english-button">English</button>
+                <button class="language-button" id="italian-button">Italiano</button>
+                <button class="language-button" id="spanish-button">Español</button>
+            </div>
+            <div id="game-question"></div>
+            <div id="game-options"></div>
+            <div id="game-result"></div>
+        </div>
+    </section>
+
+    <section class="calendar-section" id="calendar-section">
+        <h2>Book Your Language Adventure</h2>
+        <button class="cta-button" style="margin-bottom: 1rem;" onclick="window.open('https://calendly.com/atlascorrine', '_blank')">Open Calendly</button>
+        <p>Choose a time that works for you and let's begin your journey!</p>
+    
+        <!-- PayPal Button -->
+        <div style="margin-top: 2rem;">
+            <form action="https://www.paypal.com/donate" method="post" target="_blank">
+                <input type="hidden" name="business" value="atlascorrine@gmail.com">
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="submit" class="paypal-button" value="PayPal">
+            </form>
+        </div>
+    
+        <!-- Added margin to give more space between PayPal button and the iframe -->
+        <iframe src="https://calendly.com/atlascorrine" class="calendar-frame" style="margin-top: 3rem;"></iframe>
+    </section>
+    <footer style="font-family: 'Poppins', sans-serif; text-align: center; color: #333; padding: 20px; background-color: #f0f0f0;">
+        <p style="font-size: 1rem; margin-bottom: 10px;">
+            ✉️ Reach me at: <a href="mailto:atlascorrine@gmail.com" style="color: #45B7D1; text-decoration: none; font-weight: 600;">atlascorrine@gmail.com</a>
+        </p>
+        
+            </a>
+        </p>
+      
+    </footer>
+    <!-- New continuation section with same background as header -->
+<section class="continuation-section hero">
+    <div class="hero-content">
+        
+    </div>
+</section>
+
+<style>
+    /* Custom PayPal button styling */
+    .paypal-button {
+        background-color: #0070ba; /* PayPal blue */
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+
+    .paypal-button:hover {
+        background-color: #005ea6;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Reuse the .hero class for the continuation section */
+    .continuation-section {
+        padding: 4rem 2rem;
+        color: white;
+        text-align: center;
+    }
+
+    /* Continuation section content styling */
+    .continuation-section h2 {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .continuation-section p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+    }
+
+    .continuation-section ul {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+    }
+</style>
+    
+    
+
+    <script>
+        // Floating objects animation
+        function createFloatingObjects() {
+            const colors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFD93D'];
+            for (let i = 0; i < 20; i++) {
+                const obj = document.createElement('div');
+                obj.classList.add('floating-object');
+                obj.style.width = `${Math.random() * 50 + 20}px`;
+                obj.style.height = obj.style.width;
+                obj.style.background = colors[Math.floor(Math.random() * colors.length)];
+                obj.style.left = `${Math.random() * 100}%`;
+                obj.style.top = `${Math.random() * 100}%`;
+                document.querySelector('.hero').appendChild(obj);
+
+                gsap.to(obj, {
+                    x: `random(-100, 100)`,
+                    y: `random(-100, 100)`,
+                    rotation: `random(-180, 180)`,
+                    duration: `random(5, 10)`,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut'
+                });
+            }
+        }
+
+        createFloatingObjects();
+
+        // Scroll to calendar section
+        function scrollToCalendar() {
+            gsap.to(window, {duration: 1, scrollTo: "#calendar-section"});
+        }
+
+        // Language game logic
+        const questions = {
+            english: [
+                { question: "What's the Italian word for 'Hello'?", options: ["Ciao", "Arrivederci", "Grazie"], answer: "Ciao" },
+                { question: "How do you say 'Thank you' in Spanish?", options: ["Gracias", "Por favor", "De nada"], answer: "Gracias" },
+                { question: "Translate 'Good morning' to Italian:", options: ["Buongiorno", "Buonasera", "Buonanotte"], answer: "Buongiorno" },
+                { question: "What's the Spanish word for 'friend'?", options: ["Amigo", "Hermano", "Padre"], answer: "Amigo" },
+                { question: "How do you say 'I love you' in Italian?", options: ["Ti amo", "Mi piace", "Prego"], answer: "Ti amo" }
+            ],
+            italian: [
+                { question: "Come si dice 'Hello' in italiano?", options: ["Ciao", "Arrivederci", "Grazie"], answer: "Ciao" },
+                { question: "Qual è la parola spagnola per 'Grazie'?", options: ["Gracias", "Por favor", "De nada"], answer: "Gracias" },
+                { question: "Traduci 'Good morning' in italiano:", options: ["Buongiorno", "Buonasera", "Buonanotte"], answer: "Buongiorno" },
+                { question: "Come si dice 'amico' in spagnolo?", options: ["Amigo", "Hermano", "Padre"], answer: "Amigo" },
+                { question: "Traduci 'I love you' in italiano:", options: ["Ti amo", "Mi piace", "Prego"], answer: "Ti amo" }
+            ],
+            spanish: [
+                { question: "¿Cómo se dice 'Hello' en italiano?", options: ["Ciao", "Arrivederci", "Grazie"], answer: "Ciao" },
+                { question: "¿Cuál es la palabra italiana para 'Gracias'?", options: ["Grazie", "Per favore", "Prego"], answer: "Grazie" },
+                { question: "Traduce 'Good morning' al español:", options: ["Buenos días", "Buenas tardes", "Buenas noches"], answer: "Buenos días" },
+                { question: "¿Cómo se dice 'friend' en italiano?", options: ["Amico", "Fratello", "Padre"], answer: "Amico" },
+                { question: "Traduce 'I love you' al español:", options: ["Te amo", "Me gusta", "Por favor"], answer: "Te amo" }
+            ]
+        };
+
+        let currentLanguage = 'english';
+        let currentQuestion = 0;
+        
+
+        document.addEventListener('DOMContentLoaded', function() {
+            function setLanguage(language) {
+                currentLanguage = language;
+                currentQuestion = 0;
+                document.querySelectorAll('.language-button').forEach(btn => btn.classList.remove('active'));
+                document.getElementById(`${language}-button`).classList.add('active');
+                loadQuestion();
+            }
+            function scrollToCalendar() {
+                gsap.to(window, {duration: 1, scrollTo: {y: "#calendar-section", offsetY: 50}});
+            }
+
+            function loadQuestion() {
+                const question = questions[currentLanguage][currentQuestion];
+                document.getElementById('game-question').textContent = question.question;
+                const optionsContainer = document.getElementById('game-options');
+                optionsContainer.innerHTML = '';
+                question.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'game-option';
+                    button.textContent = option;
+                    button.onclick = () => checkAnswer(option);
+                    optionsContainer.appendChild(button);
+                });
+                document.getElementById('game-result').textContent = '';
+            }
+
+            function checkAnswer(selectedAnswer) {
+                const question = questions[currentLanguage][currentQuestion];
+                const resultElement = document.getElementById('game-result');
+                if (selectedAnswer === question.answer) {
+                    resultElement.textContent = "Correct! Well done!";
+                    resultElement.style.color = "#4CAF50";
+                } else {
+                    resultElement.textContent = `Incorrect. The correct answer is: ${question.answer}`;
+                    resultElement.style.color = "#FF6B6B";
+                }
+
+
+                // Move to the next question after 2 seconds
+                setTimeout(() => {
+                    currentQuestion = (currentQuestion + 1) % questions[currentLanguage].length; // Loop back to first question
+                    loadQuestion();
+                }, 2000);
+            }
+
+            // Event listeners for buttons
+            document.getElementById('english-button').addEventListener('click', () => setLanguage('english'));
+            document.getElementById('italian-button').addEventListener('click', () => setLanguage('italian'));
+            document.getElementById('spanish-button').addEventListener('click', () => setLanguage('spanish'));
+
+            // Initialize with default language
+            loadQuestion();
+        });
+    </script>
+</body>
+</html>
+
